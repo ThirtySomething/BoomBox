@@ -133,7 +133,6 @@ ein funktionierendes WLAN bzw. Handyempfang voraus. Sofern es über das Telefonn
 dazugehörige Datenvolumen Voraussetzung. Was macht man jedoch, wenn weder das eine noch das andere gegeben ist? Dann greift man zur \bb{}.
 Das ist eine Art moderner Ghettoblaster. Das Gerät ist unabhängig von Smartphone und WLan bzw. Handyempfang.
 
-\newpage
 \section{Das Gerät}
 Das Gerät \bb{} besteht aus zwei Komponenten, der Hardwarekomponente und der Softwarekomponente.
 
@@ -164,15 +163,14 @@ Die Software besteht im Wesentlichen aus nur einem Punkt: Der Musikdistibution \
 obige Hardware mit. Natürlich ist etwas Feintuning notwendig, um die Bedienung und das Handling zu vereinfachen. Das wird im Kapitel~\ref{subsec:Feintuning}
 beschrieben.
 
-\newpage
 \section{Vorbereitungen}
 Bevor das Gesamtsystem an den Start gehen kann, sind noch ein paar Vorbereitungen zu treffen.
 
 \subsection{Firmware des \rpi{} aktualisieren}
 Den \rpi{} schliessen wir mit einem Netzwerkkabel an. Dann laden wir die aktuellste Version von \href{https://www.raspberrypi.org/downloads/raspbian/}{Raspbian}
-heruntergeladen. Das ist das normale Betriebssystem für den \rpi{}. Wir schreiben das Image mit
-\href{https://sourceforge.net/projects/win32diskimager/}{Win32 Disk Imager} auf eine MicroSD Karte. Um den Zugriff via SSH zu ermöglichen, erzeugen wir in der
-Boot Partition noch die leere Datei \textit{ssh}\index{ssh}. Wir booten den \rpi{} und verbinden uns mit \textit{ssh}. Dann geben wir folgende Kommandos ein:
+herunter. Das ist das normale Betriebssystem für den \rpi{}. Wir schreiben das Image mit dem \href{https://sourceforge.net/projects/win32diskimager/}{Win32 Disk
+Imager} auf eine MicroSD Karte. Um den Zugriff via SSH zu ermöglichen, erzeugen wir in der Boot Partition noch die leere Datei \textit{ssh}\index{ssh}. Wir
+booten den \rpi{} und verbinden uns mit \textit{ssh}. Dann geben wir folgende Kommandos ein:
 
 \begin{figure}[H]
 \begin{lstlisting}
@@ -185,12 +183,16 @@ sudo reboot
 \caption{Firmware Upgrade}\label{fig:Firmware Upgrade}
 \end{figure}
 
-\newpage
+\subsection{SSD Montage}
+Die SSD muss auf den Adapter montiert werden. Das ist ganz einfach - SSD in den Slot einstecken, die Schraube zudrehen, fertig. Das Ergebnis sieht dann so aus:
+
+\jpaimg{./../images/ssd-prepared.png}{SSD mit Adapter}
+
+
 \subsection{SSD Vorbereiten}
-Die SSD montieren wir auf die Konverterplatine. Danach kann die SSD via USB verwendet werwden. Die SSD formatieren wir mit
-\href{https://de.wikipedia.org/wiki/Ext4}{ext4}. Damit kann die SSD nicht mehr direkt am Windows PC verwendet werden. Allerdings ist das Dateisystem robuster
-als \href{https://de.wikipedia.org/wiki/File_Allocation_Table#FAT32}{FAT32}. Das gilt besonders in Hinblick auf einen plötzlichen Stromverlust. Sofern man
-später die \bb{} in das eigene Netzwerk aufnimmt, erhält man über einen Samba Share Zugriff auf die SSD.\@
+Die SSD formatieren wir mit \href{https://de.wikipedia.org/wiki/Ext4}{ext4}. Damit kann die SSD nicht mehr direkt am Windows PC verwendet werden. Allerdings
+ist das Dateisystem robuster als \href{https://de.wikipedia.org/wiki/File_Allocation_Table#FAT32}{FAT32}. Das gilt besonders in Hinblick auf einen plötzlichen
+Stromverlust. Sofern man später die \bb{} in das eigene Netzwerk aufnimmt, erhält man über einen Samba Share Zugriff auf die SSD.\@
 
 \subsection{Betanken der SSD}\label{subsec:Betanken der SSD}
 Um \vol{} beim Start auch eine Musikauswahl anbieten zu können, wird die SSD initial betankt. Hierzu wird ein SMB-Share verbunden und die Dateien
@@ -201,9 +203,7 @@ kopiert. Dieser Schritt ist nur einmalig durchzuführen.
 # Utilities zum Mounten des SMB-Shares
 sudo apt-get install cifs-utils
 # SMB-Share mounten
-# mount -t cifs -o user=<smbuser>,domain=<domain|workgroup> //<IP des Shares>/<sharename> /<mountpoint>
-# SMB-Share nach /mnt verbinden
-sudo mount -t cifs -o user=jochen,domain=wlp //192.168.71.10/music /mnt
+mount -t cifs -o user=<smbuser>,domain=<domain|workgroup> //<IP des Shares>/<sharename> /mnt
 # Mountpoint /music fuer SSD anlegen
 sudo mkdir /music
 # SSD nach /music mounten
@@ -218,25 +218,34 @@ sudo cp -R * /music
 Nachdem der Kopiervorgang beendet ist, kann der \rpi{} heruntergefahren werden. Die MicroSD Karte entfernen wir. Für die nächste Verwendung spielen wir da
 \vol{} auf.
 
-\newpage
 \section{Die Hardwarekomponente}
 Hier geht es um den mechanischen Zusammenbau der \bb{}. Da alles übereinander gestapelt wird, spreche ich auch von dem \textit{Hardwarestack}.
 
 \subsection{Das Display und der \rpi{}}
-Wir beginnen mit dem Display. Beim Auspacken fällt auf, dass die Steuerplatine bereits angeschlossen und montiert ist. Das vereinfacht den Zusammenbau für uns.
-Wie das genau gemacht wird, ist in dem \href{https://www.youtube.com/watch?v=tK-w-wDvRTg}{YouTube Video} einfach erklärt. \textbf{Achtung:} Für die \bb{}
-schliessen wir nur das Flachbandkabel an. Im Video wird der \rpi{} mit Schrauben befestigt. Statt diesen Schrauben verwenden wir Abstandsbolzen M2,5~x~11mm.
-Nach dem \rpi{} kommen ja noch die Soundkarte und die Konverterplatine.
+Wir beginnen mit dem Display. Beim Auspacken fällt auf, dass die Steuerplatine bereits angeschlossen und montiert ist.
+
+\jpaimg{./../images/display.png}{Display}
+
+Das vereinfacht den Zusammenbau für uns. Wie das genau gemacht wird, ist in diesem \href{https://www.youtube.com/watch?v=tK-w-wDvRTg}{YouTube Video} einfach
+erklärt. \textbf{Achtung:} Für die \bb{} schliessen wir nur das Flachbandkabel an. Im Video wird der \rpi{} mit Schrauben befestigt. Statt diesen Schrauben
+verwenden wir Abstandsbolzen M2,5~x~11mm. Nach dem \rpi{} kommen ja noch die Soundkarte und die Konverterplatine.
+
+\jpaimg{./../images/dsp-pi.png}{Display mit Pi}
+
 
 \subsection{Die Soundkarte}
-Hier gibt es nicht viel zu erklären. Die Soundkarte wird auf die GPIO-Leiste des \rpi{} gesteckt. Danach werden die Abstandbolzen, die bei der Soundkarte
-mitgeliefert wurden, zur Fixierung aufgeschraubt.
+Hier gibt es nicht viel zu erklären. Die Soundkarte wird auf die GPIO-Leiste des \rpi{} gesteckt. Danach werden die Abstandbolzen, die bei der
+SSD-Adapterplatine (!) mitgeliefert wurden, zur Fixierung aufgeschraubt.
+
+\jpaimg{./../images/dsp-pi-iq.png}{Display, Pi und iQAudio}
 
 \subsection{Die Konverterplatine}
 Zum Schluss kommt die SSD mit der Konverterplatine. Beide haben wir ja bereits in den Vorbereitungen miteinander verbunden. Diese Platine wird mit Schrauben auf
 den Abstandsbolzen der Soundkarte fixiert. Der \rpi{} wird zwar über die Soundkarte mit Strom versorgt. Das ist allerdings zu wenig, um auch noch über USB die
 Konverterplatine mit der SSD zu versorgen. Deswegen müssen wir den Jumper \textit{PWR\_U} so setzen, dass der mittlere Pin und der dem Platinenrand am nächsten
 stehende Pin gebrückt sind. Das sorgt dafür, dass die Konverterplatine nicht über USB, sondern über den extra Eingang mit Strom versorgt wird.
+
+\jpaimg{./../images/dsp-pi-iq-ssd.png}{Display, Pi, iQAudio und SSD}
 
 \subsection{Adapterkabel}
 Das Netzteil hat nur einen Ausgang mit 19V. Für das Display und die Konverterplatine werden jedoch 5V benötigt. Dazu benötigen wir ein Adapterkabel. Das Kabel
@@ -245,13 +254,17 @@ Kabel an. Eines, welches wieder einen Stecker für die Soundkarte hat. Und eines
 \href{https://de.wikipedia.org/wiki/Abw\%C3\%A4rtswandler}{Step Down Converter} verbunden wird. Dieser Step Down Converter hat zwei USB Anschlüsse, über die wir
 dann das Display und die Konverterplatine mit Strom versorgen.
 
-\newpage
+\jpaimg{./../images/adaptercable.png}{Adapterkabel}
+
 \subsection{Das Ergebnis}
 Wenn alles korrekt zusammengebaut wurde, sieht es dann aus wie in folgendem Bild.
 
 \jpaimg{./../images/bbwopwr.png}{Hardwarestack}
 
-\newpage
+Und wenn dann noch die Kabel angeschlossen wurden, sieht es so aus:
+
+\jpaimg{./../images/cableconnected.png}{Hardwarestack mit Kabel}
+
 \section{Die Softwarekomponente}
 Hier geht es um die Installation und Konfiguration von \vol{}.
 
@@ -260,7 +273,6 @@ Voraussetungen für die Installation ist das \nameref{subsec:Betanken der SSD}. 
 \vol{} herunter. Danach bemühen wir wieder den Win32 Disk Imager und spielen damit das Image auf die MicroSD Karte. Nachdem das Image aufgespielt ist, die Karte
 im \rpi{} eingesetzt wurde, starten wir das System. Bitte darauf achten, das der \rpi{} mit einem Netzwerkkabel an das Netzwerk angeschlossen ist.
 
-\newpage
 \subsection{Die Plugins}
 Die IP Adresse der \bb{} können wir über unseren Router herausfinden. Danach rufen wir im Browser die IP Adresse auf. Der Startbildschirm sieht dann in etwa
 so aus.
@@ -281,13 +293,11 @@ Ein weiteres Plugin ist ein einfacher Equalizer. Diesen installieren wir ebenso.
 
 \jpaimg{./../images/vol-equal.png}{Equalizer}
 
-\newpage
 Nachdem die Plugins installiert wurden, muss man sie natürlich noch aktivieren. Das geht auf dem zweiten Reiter \textit{Installierte Plugins}. Nachdem sie
 aktiviert wurden, sieht das aus wie folgt.
 
 \jpaimg{./../images/vol-plug-active.png}{Plugins}
 
-\newpage
 \subsection{Feintuning}\label{subsec:Feintuning}
 Jetzt geht es an ein paar Feineinstellungen. Wie die zu machen sind, ist \href{https://volumio.org/forum/guide-for-setting-touchscreen-backlight-control-t11425.html}{auf dieser Seite}
 erklärt. \textbf{Hinweis:} Nachdem einer oder mehrerer dieser Konfigurationsschritte durchgeführt wurde, ist ein Reboot notwendig. Erst damit werden die
@@ -300,7 +310,6 @@ Zugang mit SSH aktiviert und deaktivert werden kann. Für unseren Zweck brauchen
 
 \jpaimg{./../images/vol-dev.png}{SSH}
 
-\newpage
 Danach melden wir uns über ssh an dem System an. Der Benutzername ist \textit{volumio}; das Passwort ist identisch zum Benutzernamen. Dann editieren wir die
 Datei Konfigurationsdatei für den Kioskmodus. Wir ergänzen die Zeile um \code{-{}- -nocursor}.
 
@@ -337,7 +346,6 @@ xset s off
 \caption{Bildschirmschoner}\label{fig:Bildschirmschoner}
 \end{figure}
 
-\newpage
 \subsubsection{Zugriff von Windows}
 Bei \vol{} ist von Haus aus bereits ein Samba installiert. Damit kann man problemlos auf den Speicher zugreifen. Allerdings bietet das Gerät verschiedene
 Speicherorte an. Das könnte zu Verwirrungen sorgen. Deswegen sorgen wir dafür, dass lediglich auf Speicher, der über USB angeschlossen wird, zugegriffen werden
@@ -390,7 +398,6 @@ sudo nano /etc/samba/smb.conf
 \caption{Share}\label{fig:Share}
 \end{figure}
 
-\newpage
 Unter Windows ist das Gerät dann unter dem Namen \code{\textbackslash{}\textbackslash{}boombox} im Windows Explorer erreichbar.
 
 \jpaimg{./../images/win-bb.png}{Zugriff von Windows}
