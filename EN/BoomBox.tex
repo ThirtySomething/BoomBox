@@ -1,0 +1,423 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[toc,page]{appendix}
+\usepackage[english]{babel}
+\usepackage{color}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{imakeidx}
+\usepackage{listings}
+\usepackage{tocloft}
+
+% \usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
+% \usepackage[showframe]{geometry}
+% \usepackage{afterpage}
+% \usepackage{amsmath,amssymb}
+% \usepackage{array}
+% \usepackage{fncychap}
+% \usepackage{hhline}
+% \usepackage{latexsym}
+% \usepackage{longtable}
+% \usepackage{marvosym}
+% \usepackage{pdflscape}
+% \usepackage{setspace}
+% \usepackage{stmaryrd}
+% \usepackage{tabularx}
+% \usepackage{wasysym}
+
+% Definition of page style with fancy header
+\fancypagestyle{lscape}{
+\fancyhf{}
+\fancyfoot[LE]{
+\begin{textblock}{20} (1,5){\rotatebox{90}{\leftmark}}\end{textblock}
+\begin{textblock}{1} (13,10.5){\rotatebox{90}{\thepage}}\end{textblock}}
+\fancyfoot[LO] {
+\begin{textblock}{1} (13,10.5){\rotatebox{90}{\thepage}}\end{textblock}
+\begin{textblock}{20} (1,13.25){\rotatebox{90}{\rightmark}}\end{textblock}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+% Settings for dotted line in table of content
+\pagestyle{fancy}
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\setlength{\headheight}{15pt}
+
+% \makeatletter
+% \def\verbatim{
+%     \scriptsize,
+%     \@verbatim,
+%     \frenchspacing,
+%     \@vobeyspaces,
+%     \@xverbatim,
+% }
+% \makeatother
+
+% \makeatletter
+% \preto{\@verbatim}{\topsep=0pt \partopsep=0pt }
+% \makeatother
+
+\author{ThirtySomething}
+\title{BoomBox}
+\date{\today}
+
+\usepackage[
+pdftex,
+pdfauthor={ThirtySomething -- https://www.derpaul.net},
+pdftitle={BoomBox},
+pdfsubject={A portable music player},
+colorlinks=true,
+linkcolor=blue,
+urlcolor=blue
+]{hyperref}
+\usepackage[all]{hypcap}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\subsectionmark}[1]{\markright{#1}}
+\renewcommand{\subsubsectionmark}[1]{\markright{#1}}
+\fancyhead[R]{BoomBox}
+\fancyhead[L]{\nouppercase{\rightmark}}
+\fancyfoot[C]{Page \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\def\labelitemi{--}
+\newcommand{\bb}{\textit{BoomBox}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\jpaimg}[2]{\begin{figure}[H]\centering\fbox{\includegraphics[width=380px]{#1}}\caption{#2}\label{fig:#2}\end{figure}}
+\newcommand{\rpi}{\href{https://www.raspberrypi.org/}{Raspberry Pi}\index{Raspberry Pi}}
+\newcommand{\vol}{\href{https://volumio.org/}{Volumio}\index{Volumio}}
+
+% Settings for bash commands (lstlisting)
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=sh,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\scriptsize\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\makeindex
+
+\begin{document}
+\clearpage\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\addtocontents{toc}{\protect\thispagestyle{fancy}}
+\newpage
+
+\section{Motivation}
+There are many ways for parties to play music. One of the modern variants of this is streaming via a smartphone. However, this requires a functioning WLAN or
+mobile phone reception. If you want to use the telephone network, you need a corresponding data connection or the corresponding data volume. But what do you do
+if neither one nor the other is given? Then you use the \bb{}. This is a kind of modern ghetto blaster. The device is independent of smartphone and WLan or
+mobile phone reception.
+
+\section{The device}
+The device \bb{} consists of two components, the hardware component and the software component.
+
+\subsection{The hardware component}
+On the one hand, the system should be cost-effective, but on the other hand it should not be old-fashioned. The following components meet these requirements:
+
+\begin{itemize}
+    \item A \href{https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/}{\rpi{} 3 B+}.
+    \item An \href{http://iqaudio.co.uk/hats/9-pi-digiamp.html}{Pi-DigiAMP+}\index{iQAudio}\index{Pi-DigiAMP+}.
+    \item A \href{https://www.raspberrypi.org/products/raspberry-pi-touch-display/}{\rpi{} Touch Display}\index{Touch Display}.
+    \item A \href{https://www.conrad.de/de/m2-sata-ssd-erweiterungs-platine-fuer-den-raspberry-pi-1487097.html}{M.2 to USB Adapter}\index{M.2}.
+    \item A \href{https://www.wd.com/de-de/products/internal-ssd/wd-blue-3d-nand-sata-ssd.html}{250 GB M.2 SSD}\index{SSD}.
+    \item A \href{https://www.amazon.de/gp/product/B002JIGJ4M/ref=ppx_yo_dt_b_asin_title_o04_s00?ie=UTF8&psc=1}{Power supply}.
+    \item Two \href{https://www.amazon.de/gp/product/B01GJC4WRO/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1}{USB cable}.
+    \item A \href{https://www.amazon.de/gp/product/B073S9SFK2/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1}{MicroSD card}.
+    \item A \href{https://www.amazon.de/gp/product/B07KFFNBLJ/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1}{Step Down Converter}\index{Step Down Converter}.
+    \item An \href{https://www.amazon.de/gp/product/B071KVWQKY/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&psc=1}{Adatper with terminal block}.
+    \item A \href{https://www.amazon.de/gp/product/B00A6QKIEQ/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1}{Cable with plug}.
+\end{itemize}
+
+The \rpi{} is an inexpensive single board computer that is perfect for this project. The sound card greatly improves audio output -- the \rpi{} isn't so
+convincing here by nature. The original touch display is used for operation without additional input devices. On Parties can be a bit wild every now and then.
+So that shocks don't have any influence on the \bb{}, instead of a conventional hard disk an SSD is used as mass storage. This is connected to the system via
+an adapter.
+
+\subsection{The software component}
+The software essentially consists of only one point: the music distibution \vol{}. This distribution comes with support for the above hardware. Of course
+some fine-tuning is necessary to simplify operation and handling. This is described in the chapter~\ref{subsec:Fine-tuning}.
+
+\section{Preparations}
+Before the entire system can go to the start, a few preparations have to be made.
+
+\subsection{Updating the \rpi{} firmware}
+We'll connect the \rpi{} with a network cable. Then we download the latest version of \href{https://www.raspberrypi.org/downloads/raspbian/}{Raspbian}. This
+is the normal operating system for the \rpi{}. We write the image with the \href{https://sourceforge.net/projects/win32diskimager/}{Win32 Disk Imager} on
+a MicroSD card. To allow access via SSH, we create the empty file \textit{ssh}\index{ssh} in the boot partition. We boot the \rpi{} and connect to
+\textit{ssh}. Then we enter the following commands:
+
+\begin{figure}[H]
+\begin{lstlisting}
+sudo apt-get update
+sudo apt-get install git
+sudo wget https://raw.github.com/Hexxeh/rpi-update/master/rpi-update -O /usr/bin/rpi-update && sudo chmod +x /usr/bin/rpi-update
+sudo rpi-update
+sudo reboot
+\end{lstlisting}
+\caption{Firmware Update}\label{fig:Firmware Update}
+\end{figure}
+
+\subsection{SSD mounting}
+The SSD must be mounted on the adapter. This is very simple - insert the SSD into the slot, tighten the screw and you're done. The result looks like this:
+
+\jpaimg{./../images/ssd-prepared.png}{SSD with adapter}
+
+
+\subsection{Prepare SSD}
+We format the SSD with \href{https://en.wikipedia.org/wiki/Ext4}{ext4}. This means that the SSD can no longer be used directly on the Windows PC.\@ However,
+the file system is more robust than \href{https://en.wikipedia.org/wiki/File_Allocation_Table#FAT32}{FAT32}. This is especially true in the event of sudden
+power loss. If you later include the \bb{} in your own network, you get access to the SSD.\@
+
+\subsection{Filling up the SSD}\label{subsec:Filling up the SSD}
+To be able to offer \vol{} also a music selection at the start, the SSD is initially refuelled. For this a SMB-Share is connected and the files are copied.
+This step must only be performed once.
+
+\begin{figure}[H]
+\begin{lstlisting}
+# Utilities to mount the SMB-Shares
+sudo apt-get install cifs-utils
+# Mount SMB-Share
+mount -t cifs -o user=<smbuser>,domain=<domain|workgroup> //<IP of the share>/<sharename> /mnt
+# Create mountpoint /music for the SSD
+sudo mkdir /music
+# Mount the SSD to /music
+sudo mount /dev/sda1 /music
+# Start filling up of the SSD
+sudo cd /mnt
+sudo cp -R * /music
+\end{lstlisting}
+\caption{Filling up the SSD}\label{fig:Filling up the SSD}
+\end{figure}
+
+After the copy process is finished, the \rpi{} can be shut down. We remove the MicroSD card. For the next use we save \vol{} on it.
+
+\section{The hardware component}
+This is about the mechanical assembly of the \bb{}. Since everything is stacked on top of each other, I'm also talking about the \textit{Hardwarestack}.
+
+\subsection{The display and the \rpi{}}
+We'll start with the display. When unpacking, it is noticeable that the control board is already connected and mounted.
+
+\jpaimg{./../images/display.png}{Display}
+
+This simplifies assembly for us. How this is done is simply explained in this \href{https://www.youtube.com/watch?v=tK-w-wDvRTg}{YouTube Video}.
+
+\textbf{Caution:} For the \bb{} we only connect the ribbon cable. In the video, the \rpi{} is fastened with screws. Instead of these screws we use spacer
+bolts M2,5~x~11mm. After the \rpi{} the sound card and the converter board for the SSD will be added.
+
+\jpaimg{./../images/dsp-pi.png}{Display with Pi}
+
+\subsection{The sound card}
+There's not much to explain here. The sound card is placed on the GPIO bar of the \rpi{}. Then the spacer bolts, which were supplied with the SSD adapter
+board (!), are screwed on for fixing.
+
+\jpaimg{./../images/dsp-pi-iq.png}{Display, Pi and iQAudio}
+
+\subsection{The converter board}
+At the end comes the SSD with the converter board. We have already connected both in the preparations. This board is fixed with screws on the spacer bolts of
+the sound card. The \rpi{} is powered by the soundcard. However, this is too less to supply the converter board with the SSD via USB.\@ Therefore we have to set
+the jumper \textit{PWR\_U} so that the middle pin and the pin closest to the board edge are bridged. This ensures that the converter board is not supplied with
+power via USB, but via the extra input.
+
+\jpaimg{./../images/dsp-pi-iq-ssd.png}{Display, Pi, iQAudio and SSD}
+
+\subsection{Adapter cable}
+The power supply has only one output with 19V. For the display and the converter board 5V are required. For this we need an adapter cable. The cable has a
+socket, into which the plug of the power supply comes. This socket has screw terminals on the other side. We connect two cables to these screw terminals. One,
+which again has a plug for the sound card. And one which is connected with screw terminals to a so-called
+\href{https://en.wikipedia.org/wiki/Buck_converter}{Step Down Converter}. This Step Down Converter has two USB ports, which we use to power the display
+and the converter board.
+
+\jpaimg{./../images/adaptercable.png}{Adapter cable}
+
+\subsection{The result}
+If everything was assembled correctly, it looks like in the following picture.
+
+\jpaimg{./../images/bbwopwr.png}{Hardwarestack}
+
+And if the cables were also connected, it looks that way:
+
+\jpaimg{./../images/cableconnected.png}{Hardwarestack with cables}
+
+\section{The software component}
+This is about the installation and configuration of \vol{}.
+
+\subsection{First installation}
+Prerequisites for the installation is the \nameref{subsec:Filling up the SSD}. And of course the assembly of the hardware stack. For this we download the
+image of \vol{}. After that we try the Win32 Disk Imager again and save the image on the MicroSD card. After the image is installed, the card is inserted in
+the \rpi{}, we start the system. Please make sure that the \rpi{} is connected to the network with a network cable.
+
+\subsection{The plugins}
+We can find out the IP address of the \bb{} via our router. Then we call up the IP address in the browser. The start screen will look like this.
+
+\jpaimg{./../images/vol-main.png}{Initial screen}
+
+By the time we see this image, we have already made a great deal of progress. In order for the touch screen to work, an appropriate plugin is required. To
+do this we go through the settings -- the gear in the upper left corner.
+
+\jpaimg{./../images/vol-setup.png}{Settings}
+
+For the plugins we select the corresponding menu item. The plugin for the touchscreen can be found under \textit{Miscellanea}, it is called
+\textit{Touch Display Plugin}.
+
+\jpaimg{./../images/vol-touch.png}{Touchscreen}
+
+Another plugin is a simple equalizer. We install it as well. It can be found under \textit{Audio Interface}.
+
+\jpaimg{./../images/vol-equal.png}{Equalizer}
+
+After the plugins have been installed, you have to activate them. This is done on the second tab \textit{Installed Plugins}. After they are activated, it
+looks like this.
+
+\jpaimg{./../images/vol-plug-active.png}{Plugins}
+
+\subsection{Fine-tuning}\label{subsec:Fine-tuning}
+Now it's time for some fine tuning. How to do them is explained
+\href{https://volumio.org/forum/guide-for-setting-touchscreen-backlight-control-t11425.html}{on this page}.
+
+\textbf{Note:} After performing one or more of these configuration steps, a reboot is necessary. Only then the changes will take effect.
+
+\subsubsection{The mouse pointer}\label{subsubsec:SSH}
+We start by hiding the mouse pointer. First we have to activate SSH.\@ This can be done via the browser with the following URL:\@ \\
+\textit{http://<IP-the-BoomBox>/dev} -- in my case for example with \\ \textit{http://192.168.2.17/dev}. On this page we find buttons to activate and
+de\-activate access with SSH.\@ For our purpose we need this actively.
+
+\jpaimg{./../images/vol-dev.png}{SSH}
+
+Then we log on to the system via ssh. The username is \textit{volumio}; the password is identical to the username. Then we edit the file configuration file for
+the kiosk mode. We add \code{-{}- -nocursor} to the line.
+
+\begin{figure}[H]
+\begin{lstlisting}
+sudo nano /lib/systemd/system/volumio-kiosk.service
+# Original line
+# ExecStart=/usr/bin/startx /etc/X11/Xsession /opt/volumiokiosk.sh
+# Modified line
+ExecStart=/usr/bin/startx /etc/X11/Xsession /opt/volumiokiosk.sh -- -nocursor
+# Leave the editor by pressing CTRL+X
+\end{lstlisting}
+\caption{Kiosk mode}\label{fig:Kiosk mode}
+\end{figure}
+
+\subsubsection{Screensaver}
+From time to time the display is simply \textit{switched off}. That is, it becomes completely black. To prevent this, the following steps are necessary:
+
+\begin{figure}[H]
+\begin{lstlisting}
+sudo nano /opt/volumiokiosk.sh
+
+# Original lines
+# xset +dpms
+# xset s blank
+# xset 0 0 120
+
+# Adjusted lines
+xset -dpms
+xset s off
+#xset 0 0 120
+# Leave the editor by pressing CTRL+X
+\end{lstlisting}
+\caption{Screensaver}\label{fig:Screensaver}
+\end{figure}
+
+\subsubsection{Access from Windows}
+At \vol{} a samba is already installed by default. This allows easy access to the storage. However, the device offers different storage locations. This could
+cause confusion. That's why we make sure that only storage that is connected via USB can be accessed. So we can access the SSD from Windows without guesswork.
+
+\begin{figure}[H]
+\begin{lstlisting}
+sudo nano /etc/samba/smb.conf
+
+# Original lines
+[Internal Storage]
+        comment = Boombox Internal Music Folder
+        path = /data/INTERNAL
+        read only = no
+        guest ok = yes
+
+[USB]
+        comment = Boombox USB Music Folder
+        path = /mnt/USB
+        read only = no
+        guest ok = yes
+
+[NAS]
+        comment = Boombox NAS Music Folder
+        path = /mnt/NAS
+        read only = no
+        guest ok = yes
+
+# Adjusted lines
+#[Internal Storage]
+#        comment = Boombox Internal Music Folder
+#        path = /data/INTERNAL
+#        read only = no
+#        guest ok = yes
+
+[SSD]
+        comment = Boombox SSD Music Folder
+        path = /mnt/USB
+        read only = no
+        guest ok = yes
+
+#[NAS]
+#        comment = Boombox NAS Music Folder
+#        path = /mnt/NAS
+#        read only = no
+#        guest ok = yes
+
+# Leave the editor by pressing CTRL+X
+\end{lstlisting}
+\caption{Share}\label{fig:Share}
+\end{figure}
+
+Under Windows, the device can then be accessed under the name \code{\textbackslash{}\textbackslash{}boombox} in Windows Explorer.
+
+\jpaimg{./../images/win-bb.png}{Access from Windows}
+
+Finally, we turn on the \textit{SSH} access again. To do this we call up the corresponding page. See also chapter \nameref{subsubsec:SSH}.
+
+\clearpage{}
+\phantomsection{}
+\addcontentsline{toc}{section}{List of figures}
+\listoffigures\thispagestyle{fancy}
+\newpage
+
+% \clearpage{}
+% \phantomsection{}
+% \addcontentsline{toc}{section}{Tabellenverzeichnis}
+% \listoftables\thispagestyle{fancy}
+% \newpage
+
+\renewcommand{\indexname}{Index}
+\clearpage{}
+\phantomsection{}
+\addcontentsline{toc}{section}{Index}
+\printindex\thispagestyle{fancy}
+\newpage
+
+\end{document}
