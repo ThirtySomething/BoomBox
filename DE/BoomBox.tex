@@ -88,9 +88,13 @@ urlcolor=blue
 \renewcommand{\footrulewidth}{0.4pt}
 
 \def\labelitemi{--}
-\newcommand{\bb}{\textit{\href{https://github.com/ThirtySomething/BoomBox}{BoomBox}}}
+\newcommand{\bb}{\href{https://github.com/ThirtySomething/BoomBox}{BoomBox}}
+\newcommand{\capla}[1]{\caption{#1}\label{fig:#1}}
 \newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\jpaimg}[2]{\begin{figure}[H]\centering\fbox{\includegraphics[width=380px]{#1}}\caption{#2}\label{fig:#2}\end{figure}}
+\newcommand{\jpaimg}[2]{\begin{figure}[H]\centering\fbox{\includegraphics[width=380px]{#1}}\capla{#2}\end{figure}}
+\newcommand{\mixxx}{\href{https://www.mixxx.org/}{Mixxx}\index{Mixxx}}
+\newcommand{\portm}{\href{http://portmedia.sourceforge.net/portmidi/}{Portmedia}\index{Portmedia}}
+\newcommand{\raspbian}{\href{https://www.raspberrypi.org/downloads/raspbian/}{Raspbian}\index{Raspbian}}
 \newcommand{\rpi}{\href{https://www.raspberrypi.org/}{Raspberry Pi}\index{Raspberry Pi}}
 \newcommand{\vol}{\href{https://volumio.org/}{Volumio}\index{Volumio}}
 
@@ -161,16 +165,16 @@ eine SSD als Massenspeicher eingesetzt. Diese wird über einen Adapter an das Sy
 \subsection{Die Softwarekomponente}
 Die Software besteht im Wesentlichen aus nur einem Punkt: Der Musikdistibution \vol{}. Diese Distribution bringt von Haus aus bereits eine Unterstützung für
 obige Hardware mit. Natürlich ist etwas Feintuning notwendig, um die Bedienung und das Handling zu vereinfachen. Das wird im Kapitel~\ref{subsec:Feintuning}
-beschrieben.
+beschrieben. Allerdings -- sofern man es etwas professioneller wünscht, wird auch die Installation von \mixxx{} kurz beschrieben.
 
 \section{Vorbereitungen}
 Bevor das Gesamtsystem an den Start gehen kann, sind noch ein paar Vorbereitungen zu treffen.
 
 \subsection{Firmware des \rpi{} aktualisieren}
-Den \rpi{} schliessen wir mit einem Netzwerkkabel an. Dann laden wir die aktuellste Version von \href{https://www.raspberrypi.org/downloads/raspbian/}{Raspbian}
-herunter. Das ist das normale Betriebssystem für den \rpi{}. Wir schreiben das Image mit dem \href{https://sourceforge.net/projects/win32diskimager/}{Win32 Disk
-Imager} auf eine MicroSD Karte. Um den Zugriff via SSH zu ermöglichen, erzeugen wir in der Boot Partition noch die leere Datei \textit{ssh}\index{ssh}. Wir
-booten den \rpi{} und verbinden uns mit \textit{ssh}. Dann geben wir folgende Kommandos ein:
+Den \rpi{} schliessen wir mit einem Netzwerkkabel an. Dann laden wir die aktuellste Version von \raspbian{} herunter. Das ist das normale Betriebssystem für
+den \rpi{}. Wir schreiben das Image mit dem \href{https://sourceforge.net/projects/win32diskimager/}{Win32 Disk Imager} auf eine MicroSD Karte. Um den Zugriff
+via SSH zu ermöglichen, erzeugen wir in der Boot Partition noch die leere Datei \textit{ssh}\index{ssh}. Wir booten den \rpi{} und verbinden uns mit
+\textit{ssh}. Dann geben wir folgende Kommandos ein:
 
 \begin{figure}[H]
 \begin{lstlisting}
@@ -180,7 +184,7 @@ sudo wget https://raw.github.com/Hexxeh/rpi-update/master/rpi-update -O /usr/bin
 sudo rpi-update
 sudo reboot
 \end{lstlisting}
-\caption{Firmware Upgrade}\label{fig:Firmware Upgrade}
+\capla{Firmware Upgrade}
 \end{figure}
 
 \subsection{SSD Montage}
@@ -212,11 +216,11 @@ sudo mount /dev/sda1 /music
 sudo cd /mnt
 sudo cp -R * /music
 \end{lstlisting}
-\caption{SSD Betanken}\label{fig:SSD Betanken}
+\capla{SSD Betanken}
 \end{figure}
 
 Nachdem der Kopiervorgang beendet ist, kann der \rpi{} heruntergefahren werden. Die MicroSD Karte entfernen wir. Für die nächste Verwendung spielen wir da
-\vol{} auf.
+\vol{} auf. Oder, als Alternative, das \raspbian{} und die Software \mixxx{}.
 
 \section{Die Hardwarekomponente}
 Hier geht es um den mechanischen Zusammenbau der \bb{}. Da alles übereinander gestapelt wird, spreche ich auch von dem \textit{Hardwarestack}.
@@ -231,7 +235,6 @@ erklärt. \textbf{Achtung:} Für die \bb{} schliessen wir nur das Flachbandkabel
 verwenden wir Abstandsbolzen M2,5~x~11mm. Nach dem \rpi{} kommen ja noch die Soundkarte und die Konverterplatine.
 
 \jpaimg{./../images/dsp-pi.png}{Display mit Pi}
-
 
 \subsection{Die Soundkarte}
 Hier gibt es nicht viel zu erklären. Die Soundkarte wird auf die GPIO-Leiste des \rpi{} gesteckt. Danach werden die Abstandbolzen, die bei der
@@ -265,7 +268,7 @@ Und wenn dann noch die Kabel angeschlossen wurden, sieht es so aus:
 
 \jpaimg{./../images/cableconnected.png}{Hardwarestack mit Kabel}
 
-\section{Die Softwarekomponente}
+\section{\vol{}}
 Hier geht es um die Installation und Konfiguration von \vol{}.
 
 \subsection{Erstinstallation}
@@ -277,26 +280,26 @@ im \rpi{} eingesetzt wurde, starten wir das System. Bitte darauf achten, das der
 Die IP Adresse der \bb{} können wir über unseren Router herausfinden. Danach rufen wir im Browser die IP Adresse auf. Der Startbildschirm sieht dann in etwa
 so aus.
 
-\jpaimg{./../images/vol-main.png}{Startbildschirm}
+\jpaimg{./../images/vol-main.png}{Volumio Startbildschirm}
 
 Wenn wir diesen Bildschim sehen, haben wir schon einen sehr großen Fortschritt erzielt. Damit der Touchscreen funktioniert, ist ein entsprechendes Plugin
 notwendig. Hierzu gehen wir über die Einstellungen -- das Zahnrad in der linken, oberen Ecke.
 
-\jpaimg{./../images/vol-setup.png}{Einstellungen}
+\jpaimg{./../images/vol-setup.png}{Volumio Einstellungen}
 
 Für die Plugins wählen wir den entsprechenden Menüpunkt aus. Das Plugin für den Touchscreen finden wir unter \textit{Miscellanea}, es heisst \textit{Touch
 Display Plugin}.
 
-\jpaimg{./../images/vol-touch.png}{Touchscreen}
+\jpaimg{./../images/vol-touch.png}{Volumio Touchscreen}
 
 Ein weiteres Plugin ist ein einfacher Equalizer. Diesen installieren wir ebenso. Er ist unter \textit{Audio Interface} zu finden.
 
-\jpaimg{./../images/vol-equal.png}{Equalizer}
+\jpaimg{./../images/vol-equal.png}{Volumio Equalizer}
 
 Nachdem die Plugins installiert wurden, muss man sie natürlich noch aktivieren. Das geht auf dem zweiten Reiter \textit{Installierte Plugins}. Nachdem sie
 aktiviert wurden, sieht das aus wie folgt.
 
-\jpaimg{./../images/vol-plug-active.png}{Plugins}
+\jpaimg{./../images/vol-plug-active.png}{Volumio Plugins}
 
 \subsection{Feintuning}\label{subsec:Feintuning}
 Jetzt geht es an ein paar Feineinstellungen. Wie die zu machen sind, ist \href{https://volumio.org/forum/guide-for-setting-touchscreen-backlight-control-t11425.html}{auf dieser Seite}
@@ -308,7 +311,7 @@ Wir beginnen mit dem Ausblenden des Mauszeigers. Zuerst müssen wir hierfür SSH
 \textit{http://<IP-der-BoomBox>/dev} -- in meinem Fall beispielsweise mit \\ \textit{http://192.168.2.17/dev}. Auf dieser Seite finden wir Buttons, über die der
 Zugang mit SSH aktiviert und deaktivert werden kann. Für unseren Zweck brauchen wir das aktiv.
 
-\jpaimg{./../images/vol-dev.png}{SSH}
+\jpaimg{./../images/vol-dev.png}{Volumio SSH}
 
 Danach melden wir uns über ssh an dem System an. Der Benutzername ist \textit{volumio}; das Passwort ist identisch zum Benutzernamen. Dann editieren wir die
 Datei Konfigurationsdatei für den Kioskmodus. Wir ergänzen die Zeile um \code{-{}- -nocursor}.
@@ -322,11 +325,11 @@ sudo nano /lib/systemd/system/volumio-kiosk.service
 ExecStart=/usr/bin/startx /etc/X11/Xsession /opt/volumiokiosk.sh -- -nocursor
 # Editor mit CTRL+X verlassen
 \end{lstlisting}
-\caption{Kiosk Modus}\label{fig:Kiosk Modus}
+\capla{Kiosk Modus}
 \end{figure}
 
 \subsubsection{Bildschirmschoner}
-Ab und zu wird das Display einfach \textit{abgeschaltet}. Das heißt, es wird vollständig schwarz. Um das zu verhindern, sind folgende Schritte notwendig:
+Ab und zu wird das Display einfach abgeschaltet. Das heißt, es wird vollständig schwarz. Um das zu verhindern, sind folgende Schritte notwendig:
 
 \begin{figure}[H]
 \begin{lstlisting}
@@ -343,7 +346,7 @@ xset s off
 #xset 0 0 120
 # Editor mit CTRL+X verlassen
 \end{lstlisting}
-\caption{Bildschirmschoner}\label{fig:Bildschirmschoner}
+\capla{Bildschirmschoner}
 \end{figure}
 
 \subsubsection{Zugriff von Windows}
@@ -395,7 +398,7 @@ sudo nano /etc/samba/smb.conf
 
 # Editor mit CTRL+X verlassen
 \end{lstlisting}
-\caption{Share}\label{fig:Share}
+\capla{Volumio Share}
 \end{figure}
 
 Unter Windows ist das Gerät dann unter dem Namen \code{\textbackslash{}\textbackslash{}boombox} im Windows Explorer erreichbar.
@@ -403,6 +406,28 @@ Unter Windows ist das Gerät dann unter dem Namen \code{\textbackslash{}\textbac
 \jpaimg{./../images/win-bb.png}{Zugriff von Windows}
 
 Zum Abschluss schalten wir den \textit{SSH} Zufriff wieder ab. Dazu rufen wir die entsprechende Seite auf. Siehe hierzu auch Kapitel \nameref{subsubsec:SSH}.
+
+\section{\mixxx{}}
+Bei \mixxx{} handelt es sich um eine Open Source DJ Software. Hierfür gibt es keine eigenständige Distribution. Wir verwenden als Basisbetriebssystem
+\raspbian{} in der Light-Variante und ergänzen dann Stück für Stück die notwendingen Punkte. Da es keine fertige Programmversion von \mixxx{} gibt, müssen wir
+uns diese aus dem Quellcode selbst compilieren. Eine Anleitung für Linux gibt es \href{https://www.mixxx.org/wiki/doku.php/compiling_on_linux}{hier} auf der
+Seite von \mixxx{}.
+
+\subsection{Vorbereitungen}
+In der Anleitung kommt die Information über \portm{} etwas zu kurz -- diese Bibliothek ist eine Voraussetzung, ohne die \mixxx{} nicht übersetzt werden kann.
+
+\subsubsection{\portm{}}
+Für \portm{} benötigen wir CMake, das ALSA Entwicklungspackage und Java.
+
+\begin{figure}[H]
+\begin{lstlisting}
+sudo apt-get install cmake libasound2-dev oracle-java8-jdk
+export JAVA_HOME=/usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt
+export JAVA_JVM_LIBRARY= /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/arm/server/libjvm.so
+export JAVA_INCLUDE_PATH=/usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/include
+\end{lstlisting}
+\capla{Portmedia Setup}
+\end{figure}
 
 \clearpage{}
 \phantomsection{}
