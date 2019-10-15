@@ -1,16 +1,18 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage[toc,page]{appendix}
 \usepackage[ngerman]{babel}
+\usepackage[sfdefault,condensed]{cabin}
 \usepackage{color}
 \usepackage{etoolbox}
+\usepackage[T1]{fontenc}
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage{graphicx}
-\usepackage{makeidx}
 \usepackage{imakeidx}
+\usepackage[utf8]{inputenc}
 \usepackage{listings}
+\usepackage{makeidx}
+\usepackage[parfill]{parskip}
 \usepackage{tocloft}
 
 % \usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
@@ -130,6 +132,22 @@ urlcolor=blue
 \tableofcontents
 \addtocontents{toc}{\protect\thispagestyle{fancy}}
 \newpage
+
+\section{Danksagungen}
+Eigentlich bin ich Theoretiker. Und dazu kommt noch, daß ich von Elektronik relativ wenig Ahnung habe. Ein paar Menschen haben mich jedoch auf die Idee
+gebracht bzw. auch mit technischen Tipps und Hilfe versorgt. Deswegen möchte ich mich bedanken. Und zwar bei
+
+\begin{itemize}
+    \item \href{http://hellochili.de/}{Daniel Rimroth} für die Inspiration.
+    \item \href{https://forum-raspberrypi.de/forum/thread/40895-ermittlung-strombedarf/?postID=354867&highlight=thirtysomething#post354867}{STF} aus dem
+                Raspberry Pi Forum für die technischen Tipps.
+    \item Gordon von \href{http://iqaudio.co.uk/}{IQaudIO} für technische Tipps.
+    \item \href{https://www.xing.com/profile/Igor_Vogel2}{Igor Vogel} für technische Tipps.
+    \item \href{http://roth-komplettservice.de/}{Frank Roth} für die Lautsprecher und seine Geduld als Betatester.
+\end{itemize}
+
+Ohne diese Menschen hätte ich das ganze Projekt nicht soweit gebracht, wie es heute ist. Leider ist es noch nicht ganz fertig, aber es wird -- die dunkle
+Zeit des Jahres naht mit riesen Schritten.
 
 \section{Motivation}
 Es gibt für Parties viele Möglichkeiten, Musik abzuspielen. Eine der modernen Varianten davon ist Streaming über ein Smartphone. Allerdings setzt das
