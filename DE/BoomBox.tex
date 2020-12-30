@@ -15,22 +15,6 @@
 \usepackage[parfill]{parskip}
 \usepackage{tocloft}
 
-% \usepackage[margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
-% \usepackage[showframe]{geometry}
-% \usepackage{afterpage}
-% \usepackage{amsmath,amssymb}
-% \usepackage{array}
-% \usepackage{fncychap}
-% \usepackage{hhline}
-% \usepackage{latexsym}
-% \usepackage{longtable}
-% \usepackage{marvosym}
-% \usepackage{pdflscape}
-% \usepackage{setspace}
-% \usepackage{stmaryrd}
-% \usepackage{tabularx}
-% \usepackage{wasysym}
-
 % Definition of page style with fancy header
 \fancypagestyle{lscape}{
 \fancyhf{}
@@ -48,20 +32,6 @@
 \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \setlength{\headheight}{15pt}
-
-% \makeatletter
-% \def\verbatim{
-%     \scriptsize,
-%     \@verbatim,
-%     \frenchspacing,
-%     \@vobeyspaces,
-%     \@xverbatim,
-% }
-% \makeatother
-
-% \makeatletter
-% \preto{\@verbatim}{\topsep=0pt \partopsep=0pt }
-% \makeatother
 
 \author{ThirtySomething}
 \title{BoomBox}
@@ -90,9 +60,13 @@ urlcolor=blue
 \renewcommand{\footrulewidth}{0.4pt}
 
 \def\labelitemi{--}
-\newcommand{\bb}{\textit{\href{https://github.com/ThirtySomething/BoomBox}{BoomBox}}}
+\newcommand{\bb}{\href{https://github.com/ThirtySomething/BoomBox}{BoomBox}}
+\newcommand{\capla}[1]{\caption{#1}\label{fig:#1}}
 \newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\jpaimg}[2]{\begin{figure}[H]\centering\fbox{\includegraphics[width=380px]{#1}}\caption{#2}\label{fig:#2}\end{figure}}
+\newcommand{\jpaimg}[2]{\begin{figure}[H]\centering\fbox{\includegraphics[width=380px]{#1}}\capla{#2}\end{figure}}
+\newcommand{\mixxx}{\href{https://www.mixxx.org/}{Mixxx}\index{Mixxx}}
+\newcommand{\portm}{\href{http://portmedia.sourceforge.net/portmidi/}{Portmedia}\index{Portmedia}}
+\newcommand{\raspbian}{\href{https://www.raspberrypi.org/downloads/raspbian/}{Raspbian}\index{Raspbian}}
 \newcommand{\rpi}{\href{https://www.raspberrypi.org/}{Raspberry Pi}\index{Raspberry Pi}}
 \newcommand{\vol}{\href{https://volumio.org/}{Volumio}\index{Volumio}}
 
@@ -130,32 +104,46 @@ urlcolor=blue
 \newpage
 
 \section{Danksagungen}
-Eigentlich bin ich Theoretiker. Und dazu kommt noch, daß ich von Elektronik relativ wenig Ahnung habe. Ein paar Menschen haben mich jedoch auf die Idee
-gebracht bzw. auch mit technischen Tipps und Hilfe versorgt. Deswegen möchte ich mich bedanken. Und zwar bei
+
+Eigentlich bin ich Theoretiker. Und dazu kommt noch, daß ich von Elektronik
+relativ wenig Ahnung habe. Ein paar Menschen haben mich jedoch auf die Idee
+gebracht bzw. auch mit technischen Tipps und Hilfe versorgt. Deswegen möchte
+ich mich bedanken. Und zwar bei
 
 \begin{itemize}
     \item \href{http://hellochili.de/}{Daniel Rimroth} für die Inspiration.
-    \item \href{https://forum-raspberrypi.de/forum/thread/40895-ermittlung-strombedarf/?postID=354867&highlight=thirtysomething#post354867}{STF} aus dem
-                Raspberry Pi Forum für die technischen Tipps.
+    \item \href{https://forum-raspberrypi.de/forum/thread/40895-ermittlung-strombedarf/?postID=354867&highlight=thirtysomething#post354867}{STF}
+                aus dem Raspberry Pi Forum für die technischen Tipps.
     \item Gordon von \href{http://iqaudio.co.uk/}{IQaudIO} für technische Tipps.
     \item \href{https://www.xing.com/profile/Igor_Vogel2}{Igor Vogel} für technische Tipps.
-    \item \href{http://roth-komplettservice.de/}{Frank Roth} für die Lautsprecher und seine Geduld als Betatester.
+    \item \href{http://roth-komplettservice.de/}{Frank Roth} für die Lautsprecher
+                und seine Geduld als Betatester.
 \end{itemize}
 
-Ohne diese Menschen hätte ich das ganze Projekt nicht soweit gebracht, wie es heute ist. Leider ist es noch nicht ganz fertig, aber es wird -- die dunkle
+Ohne diese Menschen hätte ich das ganze Projekt nicht soweit gebracht, wie es
+heute ist. Leider ist es noch nicht ganz fertig, aber es wird -- die dunkle
 Zeit des Jahres naht mit riesen Schritten.
 
 \section{Motivation}
-Es gibt für Parties viele Möglichkeiten, Musik abzuspielen. Eine der modernen Varianten davon ist Streaming über ein Smartphone. Allerdings setzt das
-ein funktionierendes WLAN bzw. Handyempfang voraus. Sofern es über das Telefonnetz gehen soll, ist natürlich eine entsprechende Datenverbindung bzw.~das
-dazugehörige Datenvolumen Voraussetzung. Was macht man jedoch, wenn weder das eine noch das andere gegeben ist? Dann greift man zur \bb{}.
-Das ist eine Art moderner Ghettoblaster. Das Gerät ist unabhängig von Smartphone und WLan bzw. Handyempfang.
+
+Es gibt für Parties viele Möglichkeiten, Musik abzuspielen. Eine der modernen
+Varianten davon ist Streaming über ein Smartphone. Allerdings setzt das ein
+funktionierendes WLAN bzw. Handyempfang voraus. Sofern es über das Telefonnetz
+gehen soll, ist natürlich eine entsprechende Datenverbindung bzw.~das
+dazugehörige Datenvolumen Voraussetzung. Was macht man jedoch, wenn weder das
+eine noch das andere gegeben ist? Dann greift man zur \bb{}. Das ist eine Art
+moderner Ghettoblaster. Das Gerät ist unabhängig von Smartphone und WLan bzw.
+Handyempfang.
 
 \section{Das Gerät}
-Das Gerät \bb{} besteht aus zwei Komponenten, der Hardwarekomponente und der Softwarekomponente.
+
+Das Gerät \bb{} besteht aus zwei Komponenten, der Hardwarekomponente und der
+Softwarekomponente.
 
 \subsection{Die Hardwarekomponente}
-Das System soll zum einen kostengünstig, zum anderen aber auch nicht altbacken sein. Folgende Komponenten erfüllen diese Anforderungen:
+
+Das System soll zum einen kostengünstig, zum anderen aber auch nicht altbacken
+sein. Folgende Komponenten erfüllen diese Anforderungen:
 
 \begin{itemize}
     \item Einem \href{https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/}{\rpi{} 3 B+}.
@@ -171,24 +159,39 @@ Das System soll zum einen kostengünstig, zum anderen aber auch nicht altbacken 
     \item Einem \href{https://www.amazon.de/gp/product/B00A6QKIEQ/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1}{Kabel mit Stecker}.
 \end{itemize}
 
-Der \rpi{} ist ein günstiger Einplatinencomputer, der für dieses Projekt wie geschaffen ist. Die Soundkarte verbessert die Audioausgabe erheblich -- der \rpi{}
-ist von Haus aus hier nicht so überzeugend. Damit eine Bedienung ohne zusätzliche Eingabegeräte funktioniert, wird das Original Touch Display verwendet. Auf
-Parties kann es ja ab und zu mal etwas wilder zugehen. Damit Erschütterungen keinen Einfluss auf die \bb{} haben, wird statt einer konventionellen Festplatte
-eine SSD als Massenspeicher eingesetzt. Diese wird über einen Adapter an das System angeschlossen.
+Der \rpi{} ist ein günstiger Einplatinencomputer, der für dieses Projekt wie
+geschaffen ist. Die Soundkarte verbessert die Audioausgabe erheblich -- der
+\rpi{} ist von Haus aus hier nicht so überzeugend. Damit eine Bedienung ohne
+zusätzliche Eingabegeräte funktioniert, wird das Original Touch Display
+verwendet. Auf Parties kann es ja ab und zu mal etwas wilder zugehen. Damit
+Erschütterungen keinen Einfluss auf die \bb{} haben, wird statt einer
+konventionellen Festplatte eine SSD als Massenspeicher eingesetzt. Diese wird
+über einen Adapter an das System angeschlossen.
 
 \subsection{Die Softwarekomponente}
-Die Software besteht im Wesentlichen aus nur einem Punkt: Der Musikdistibution \vol{}. Diese Distribution bringt von Haus aus bereits eine Unterstützung für
-obige Hardware mit. Natürlich ist etwas Feintuning notwendig, um die Bedienung und das Handling zu vereinfachen. Das wird im Kapitel~\ref{subsec:Feintuning}
-beschrieben.
+
+Die Software besteht im Wesentlichen aus nur einem Punkt: Der Musikdistibution
+\vol{}. Diese Distribution bringt von Haus aus bereits eine Unterstützung für
+obige Hardware mit. Natürlich ist etwas Feintuning notwendig, um die Bedienung
+und das Handling zu vereinfachen. Das wird im Kapitel~\ref{subsec:Feintuning}
+beschrieben. Allerdings -- sofern man es etwas professioneller wünscht, wird
+auch die Installation von \mixxx{} kurz beschrieben.
 
 \section{Vorbereitungen}
-Bevor das Gesamtsystem an den Start gehen kann, sind noch ein paar Vorbereitungen zu treffen.
+
+Bevor das Gesamtsystem an den Start gehen kann, sind noch ein paar
+Vorbereitungen zu treffen.
 
 \subsection{Firmware des \rpi{} aktualisieren}
-Den \rpi{} schliessen wir mit einem Netzwerkkabel an. Dann laden wir die aktuellste Version von \href{https://www.raspberrypi.org/downloads/raspbian/}{Raspbian}
-herunter. Das ist das normale Betriebssystem für den \rpi{}. Wir schreiben das Image mit dem \href{https://sourceforge.net/projects/win32diskimager/}{Win32 Disk
-Imager} auf eine MicroSD Karte. Um den Zugriff via SSH zu ermöglichen, erzeugen wir in der Boot Partition noch die leere Datei \textit{ssh}\index{ssh}. Wir
-booten den \rpi{} und verbinden uns mit \textit{ssh}. Dann geben wir folgende Kommandos ein:
+
+Den \rpi{} schliessen wir mit einem Netzwerkkabel an. Dann laden wir die
+aktuellste Version von \raspbian{} herunter. Das ist das normale Betriebssystem
+für den \rpi{}. Wir schreiben das Image mit dem
+\href{https://sourceforge.net/projects/win32diskimager/}{Win32 Disk Imager} auf
+eine MicroSD Karte. Um den Zugriff via SSH zu ermöglichen, erzeugen wir in der
+Boot Partition noch die leere Datei \textit{ssh}\index{ssh}. Wir booten den
+\rpi{} und verbinden uns mit \textit{ssh}. Dann geben wir folgende Kommandos
+ein:
 
 \begin{figure}[H]
 \begin{lstlisting}
@@ -198,23 +201,32 @@ sudo wget https://raw.github.com/Hexxeh/rpi-update/master/rpi-update -O /usr/bin
 sudo rpi-update
 sudo reboot
 \end{lstlisting}
-\caption{Firmware Upgrade}\label{fig:Firmware Upgrade}
+\capla{Firmware Upgrade}
 \end{figure}
 
 \subsection{SSD Montage}
-Die SSD muss auf den Adapter montiert werden. Das ist ganz einfach - SSD in den Slot einstecken, die Schraube zudrehen, fertig. Das Ergebnis sieht dann so aus:
+
+Die SSD muss auf den Adapter montiert werden. Das ist ganz einfach - SSD in den
+Slot einstecken, die Schraube zudrehen, fertig. Das Ergebnis sieht dann so aus:
 
 \jpaimg{./../images/ssd-prepared.png}{SSD mit Adapter}
 
 
 \subsection{SSD Vorbereiten}
-Die SSD formatieren wir mit \href{https://de.wikipedia.org/wiki/Ext4}{ext4}. Damit kann die SSD nicht mehr direkt am Windows PC verwendet werden. Allerdings
-ist das Dateisystem robuster als \href{https://de.wikipedia.org/wiki/File_Allocation_Table#FAT32}{FAT32}. Das gilt besonders in Hinblick auf einen plötzlichen
-Stromverlust. Sofern man später die \bb{} in das eigene Netzwerk aufnimmt, erhält man über einen Samba Share Zugriff auf die SSD.\@
+
+Die SSD formatieren wir mit \href{https://de.wikipedia.org/wiki/Ext4}{ext4}.
+Damit kann die SSD nicht mehr direkt am Windows PC verwendet werden. Allerdings
+ist das Dateisystem robuster als
+\href{https://de.wikipedia.org/wiki/File_Allocation_Table#FAT32}{FAT32}. Das
+gilt besonders in Hinblick auf einen plötzlichen Stromverlust. Sofern man später
+die \bb{} in das eigene Netzwerk aufnimmt, erhält man über einen Samba Share
+Zugriff auf die SSD.\@
 
 \subsection{Betanken der SSD}\label{subsec:Betanken der SSD}
-Um \vol{} beim Start auch eine Musikauswahl anbieten zu können, wird die SSD initial betankt. Hierzu wird ein SMB-Share verbunden und die Dateien
-kopiert. Dieser Schritt ist nur einmalig durchzuführen.
+
+Um \vol{} beim Start auch eine Musikauswahl anbieten zu können, wird die SSD
+initial betankt. Hierzu wird ein SMB-Share verbunden und die Dateien kopiert.
+Dieser Schritt ist nur einmalig durchzuführen.
 
 \begin{figure}[H]
 \begin{lstlisting}
@@ -230,46 +242,66 @@ sudo mount /dev/sda1 /music
 sudo cd /mnt
 sudo cp -R * /music
 \end{lstlisting}
-\caption{SSD Betanken}\label{fig:SSD Betanken}
+\capla{SSD Betanken}
 \end{figure}
 
-Nachdem der Kopiervorgang beendet ist, kann der \rpi{} heruntergefahren werden. Die MicroSD Karte entfernen wir. Für die nächste Verwendung spielen wir da
-\vol{} auf.
+Nachdem der Kopiervorgang beendet ist, kann der \rpi{} heruntergefahren werden.
+Die MicroSD Karte entfernen wir. Für die nächste Verwendung spielen wir da
+\vol{} auf. Oder, als Alternative, das \raspbian{} und die Software \mixxx{}.
 
 \section{Die Hardwarekomponente}
-Hier geht es um den mechanischen Zusammenbau der \bb{}. Da alles übereinander gestapelt wird, spreche ich auch von dem \textit{Hardwarestack}.
+
+Hier geht es um den mechanischen Zusammenbau der \bb{}. Da alles übereinander
+gestapelt wird, spreche ich auch von dem \textit{Hardwarestack}.
 
 \subsection{Das Display und der \rpi{}}
-Wir beginnen mit dem Display. Beim Auspacken fällt auf, dass die Steuerplatine bereits angeschlossen und montiert ist.
+
+Wir beginnen mit dem Display. Beim Auspacken fällt auf, dass die Steuerplatine
+bereits angeschlossen und montiert ist.
 
 \jpaimg{./../images/display.png}{Display}
 
-Das vereinfacht den Zusammenbau für uns. Wie das genau gemacht wird, ist in diesem \href{https://www.youtube.com/watch?v=tK-w-wDvRTg}{YouTube Video} einfach
-erklärt. \textbf{Achtung:} Für die \bb{} schliessen wir nur das Flachbandkabel an. Im Video wird der \rpi{} mit Schrauben befestigt. Statt diesen Schrauben
-verwenden wir Abstandsbolzen M2,5~x~11mm. Nach dem \rpi{} kommen ja noch die Soundkarte und die Konverterplatine.
+Das vereinfacht den Zusammenbau für uns. Wie das genau gemacht wird, ist in
+diesem \href{https://www.youtube.com/watch?v=tK-w-wDvRTg}{YouTube Video} einfach
+erklärt. \textbf{Achtung:} Für die \bb{} schliessen wir nur das Flachbandkabel
+an. Im Video wird der \rpi{} mit Schrauben befestigt. Statt diesen Schrauben
+verwenden wir Abstandsbolzen M2,5~x~11mm. Nach dem \rpi{} kommen ja noch die
+Soundkarte und die Konverterplatine.
 
 \jpaimg{./../images/dsp-pi.png}{Display mit Pi}
 
-
 \subsection{Die Soundkarte}
-Hier gibt es nicht viel zu erklären. Die Soundkarte wird auf die GPIO-Leiste des \rpi{} gesteckt. Danach werden die Abstandbolzen, die bei der
-SSD-Adapterplatine (!) mitgeliefert wurden, zur Fixierung aufgeschraubt.
+
+Hier gibt es nicht viel zu erklären. Die Soundkarte wird auf die GPIO-Leiste des
+\rpi{} gesteckt. Danach werden die Abstandbolzen, die bei der SSD-Adapterplatine
+(!) mitgeliefert wurden, zur Fixierung aufgeschraubt.
 
 \jpaimg{./../images/dsp-pi-iq.png}{Display, Pi und iQAudio}
 
 \subsection{Die Konverterplatine}
-Zum Schluss kommt die SSD mit der Konverterplatine. Beide haben wir ja bereits in den Vorbereitungen miteinander verbunden. Diese Platine wird mit Schrauben auf
-den Abstandsbolzen der Soundkarte fixiert. Der \rpi{} wird zwar über die Soundkarte mit Strom versorgt. Das ist allerdings zu wenig, um auch noch über USB die
-Konverterplatine mit der SSD zu versorgen. Deswegen müssen wir den Jumper \textit{PWR\_U} so setzen, dass der mittlere Pin und der dem Platinenrand am nächsten
-stehende Pin gebrückt sind. Das sorgt dafür, dass die Konverterplatine nicht über USB, sondern über den extra Eingang mit Strom versorgt wird.
+
+Zum Schluss kommt die SSD mit der Konverterplatine. Beide haben wir ja bereits
+in den Vorbereitungen miteinander verbunden. Diese Platine wird mit Schrauben
+auf den Abstandsbolzen der Soundkarte fixiert. Der \rpi{} wird zwar über die
+Soundkarte mit Strom versorgt. Das ist allerdings zu wenig, um auch noch über
+USB die Konverterplatine mit der SSD zu versorgen. Deswegen müssen wir den
+Jumper \textit{PWR\_U} so setzen, dass der mittlere Pin und der dem
+Platinenrand am nächsten stehende Pin gebrückt sind. Das sorgt dafür, dass die
+Konverterplatine nicht über USB, sondern über den extra Eingang mit Strom
+versorgt wird.
 
 \jpaimg{./../images/dsp-pi-iq-ssd.png}{Display, Pi, iQAudio und SSD}
 
 \subsection{Adapterkabel}
-Das Netzteil hat nur einen Ausgang mit 19V. Für das Display und die Konverterplatine werden jedoch 5V benötigt. Dazu benötigen wir ein Adapterkabel. Das Kabel
-hat eine Buchse, in welche der Stecker des Netzteils kommt. Diese Buchse hat auf der anderen Seite Schraubklemmen. An diese Schraubklemmen schliessen wir zwei
-Kabel an. Eines, welches wieder einen Stecker für die Soundkarte hat. Und eines, welches mit Schraubklemmen an einem sogenannten
-\href{https://de.wikipedia.org/wiki/Abw\%C3\%A4rtswandler}{Step Down Converter} verbunden wird. Dieser Step Down Converter hat zwei USB Anschlüsse, über die wir
+
+Das Netzteil hat nur einen Ausgang mit 19V. Für das Display und die
+Konverterplatine werden jedoch 5V benötigt. Dazu benötigen wir ein Adapterkabel.
+Das Kabel hat eine Buchse, in welche der Stecker des Netzteils kommt. Diese
+Buchse hat auf der anderen Seite Schraubklemmen. An diese Schraubklemmen
+schliessen wir zwei Kabel an. Eines, welches wieder einen Stecker für die
+Soundkarte hat. Und eines, welches mit Schraubklemmen an einem sogenannten
+\href{https://de.wikipedia.org/wiki/Abw\%C3\%A4rtswandler}{Step Down Converter}
+verbunden wird. Dieser Step Down Converter hat zwei USB Anschlüsse, über die wir
 dann das Display und die Konverterplatine mit Strom versorgen.
 
 \jpaimg{./../images/adaptercable.png}{Adapterkabel}
@@ -283,53 +315,76 @@ Und wenn dann noch die Kabel angeschlossen wurden, sieht es so aus:
 
 \jpaimg{./../images/cableconnected.png}{Hardwarestack mit Kabel}
 
-\section{Die Softwarekomponente}
+\section{\vol{}}
 Hier geht es um die Installation und Konfiguration von \vol{}.
 
 \subsection{Erstinstallation}
-Voraussetungen für die Installation ist das \nameref{subsec:Betanken der SSD}. Und natürlich der Zusammenbau des Hardwarestacks. Dazu laden wir das Image von
-\vol{} herunter. Danach bemühen wir wieder den Win32 Disk Imager und spielen damit das Image auf die MicroSD Karte. Nachdem das Image aufgespielt ist, die Karte
-im \rpi{} eingesetzt wurde, starten wir das System. Bitte darauf achten, das der \rpi{} mit einem Netzwerkkabel an das Netzwerk angeschlossen ist.
+
+Voraussetungen für die Installation ist das \nameref{subsec:Betanken der SSD}.
+Und natürlich der Zusammenbau des Hardwarestacks. Dazu laden wir das Image von
+\vol{} herunter. Danach bemühen wir wieder den Win32 Disk Imager und spielen
+damit das Image auf die MicroSD Karte. Nachdem das Image aufgespielt ist, die
+Karte im \rpi{} eingesetzt wurde, starten wir das System. Bitte darauf achten,
+das der \rpi{} mit einem Netzwerkkabel an das Netzwerk angeschlossen ist.
 
 \subsection{Die Plugins}
-Die IP Adresse der \bb{} können wir über unseren Router herausfinden. Danach rufen wir im Browser die IP Adresse auf. Der Startbildschirm sieht dann in etwa
+Die IP Adresse der \bb{} können wir über unseren Router herausfinden. Danach
+rufen wir im Browser die IP Adresse auf. Der Startbildschirm sieht dann in etwa
 so aus.
 
-\jpaimg{./../images/vol-main.png}{Startbildschirm}
+\jpaimg{./../images/vol-main.png}{Volumio Startbildschirm}
 
-Wenn wir diesen Bildschim sehen, haben wir schon einen sehr großen Fortschritt erzielt. Damit der Touchscreen funktioniert, ist ein entsprechendes Plugin
-notwendig. Hierzu gehen wir über die Einstellungen -- das Zahnrad in der linken, oberen Ecke.
+Wenn wir diesen Bildschim sehen, haben wir schon einen sehr großen Fortschritt
+erzielt. Damit der Touchscreen funktioniert, ist ein entsprechendes Plugin
+notwendig. Hierzu gehen wir über die Einstellungen -- das Zahnrad in der linken,
+oberen Ecke.
 
-\jpaimg{./../images/vol-setup.png}{Einstellungen}
+\jpaimg{./../images/vol-setup.png}{Volumio Einstellungen}
 
-Für die Plugins wählen wir den entsprechenden Menüpunkt aus. Das Plugin für den Touchscreen finden wir unter \textit{Miscellanea}, es heisst \textit{Touch
-Display Plugin}.
+Für die Plugins wählen wir den entsprechenden Menüpunkt aus. Das Plugin für den
+Touchscreen finden wir unter \textit{Miscellanea}, es heisst \textit{Touch
+Display Plugin}. Die Installation dauert etwas, da ein
+\href{https://de.wikipedia.org/wiki/X_Window_System}{X-Server} installiert
+wird. Es ist also etwas Geduld vonnöten. Am Besten ist es, wenn man sich die
+Details anzeigen lässt -- da passiert schneller etwas, denn der
+Installationsprozess hängt bei 70\% ziemlich lange.
 
-\jpaimg{./../images/vol-touch.png}{Touchscreen}
+\jpaimg{./../images/vol-touch.png}{Volumio Touchscreen}
 
-Ein weiteres Plugin ist ein einfacher Equalizer. Diesen installieren wir ebenso. Er ist unter \textit{Audio Interface} zu finden.
+Ein weiteres Plugin ist ein einfacher Equalizer. Diesen installieren wir
+ebenso. Er ist unter \textit{Audio Interface} zu finden.
 
-\jpaimg{./../images/vol-equal.png}{Equalizer}
+\jpaimg{./../images/vol-equal.png}{Volumio Equalizer}
 
-Nachdem die Plugins installiert wurden, muss man sie natürlich noch aktivieren. Das geht auf dem zweiten Reiter \textit{Installierte Plugins}. Nachdem sie
+Nachdem die Plugins installiert wurden, muss man sie natürlich noch aktivieren.
+Das geht auf dem zweiten Reiter \textit{Installierte Plugins}. Nachdem sie
 aktiviert wurden, sieht das aus wie folgt.
 
-\jpaimg{./../images/vol-plug-active.png}{Plugins}
+\jpaimg{./../images/vol-plug-active.png}{Volumio Plugins}
 
 \subsection{Feintuning}\label{subsec:Feintuning}
-Jetzt geht es an ein paar Feineinstellungen. Wie die zu machen sind, ist \href{https://volumio.org/forum/guide-for-setting-touchscreen-backlight-control-t11425.html}{auf dieser Seite}
-erklärt. \textbf{Hinweis:} Nachdem einer oder mehrerer dieser Konfigurationsschritte durchgeführt wurde, ist ein Reboot notwendig. Erst damit werden die
-Änderungen wirksam.
+
+Jetzt geht es an ein paar Feineinstellungen. Wie die zu machen sind, ist
+\href{https://volumio.org/forum/guide-for-setting-touchscreen-backlight-control-t11425.html}{auf dieser Seite}
+erklärt. \textbf{Hinweis:} Nachdem einer oder mehrerer dieser
+Konfigurationsschritte durchgeführt wurde, ist ein Reboot notwendig. Erst damit
+werden die Änderungen wirksam.
 
 \subsubsection{Der Mauszeiger}\label{subsubsec:SSH}
-Wir beginnen mit dem Ausblenden des Mauszeigers. Zuerst müssen wir hierfür SSH aktivieren. Das geht über den Browser mit folgender URL:\@ \\
-\textit{http://<IP-der-BoomBox>/dev} -- in meinem Fall beispielsweise mit \\ \textit{http://192.168.2.17/dev}. Auf dieser Seite finden wir Buttons, über die der
-Zugang mit SSH aktiviert und deaktivert werden kann. Für unseren Zweck brauchen wir das aktiv.
 
-\jpaimg{./../images/vol-dev.png}{SSH}
+Wir beginnen mit dem Ausblenden des Mauszeigers. Zuerst müssen wir hierfür SSH
+aktivieren. Das geht über den Browser mit folgender URL:\@ \\
+\textit{http://<IP-der-BoomBox>/dev} -- in meinem Fall beispielsweise mit \\
+\textit{http://192.168.2.17/dev}. Auf dieser Seite finden wir Buttons, über die
+der Zugang mit SSH aktiviert und deaktivert werden kann. Für unseren Zweck
+brauchen wir das aktiv.
 
-Danach melden wir uns über ssh an dem System an. Der Benutzername ist \textit{volumio}; das Passwort ist identisch zum Benutzernamen. Dann editieren wir die
-Datei Konfigurationsdatei für den Kioskmodus. Wir ergänzen die Zeile um \code{-{}- -nocursor}.
+\jpaimg{./../images/vol-dev.png}{Volumio SSH}
+
+Danach melden wir uns über ssh an dem System an. Der Benutzername ist
+\textit{volumio}; das Passwort ist identisch zum Benutzernamen. Dann editieren
+wir die Datei Konfigurationsdatei für den Kioskmodus. Wir ergänzen die Zeile
+um \code{-{}- -nocursor}.
 
 \begin{figure}[H]
 \begin{lstlisting}
@@ -340,11 +395,13 @@ sudo nano /lib/systemd/system/volumio-kiosk.service
 ExecStart=/usr/bin/startx /etc/X11/Xsession /opt/volumiokiosk.sh -- -nocursor
 # Editor mit CTRL+X verlassen
 \end{lstlisting}
-\caption{Kiosk Modus}\label{fig:Kiosk Modus}
+\capla{Kiosk Modus}
 \end{figure}
 
 \subsubsection{Bildschirmschoner}
-Ab und zu wird das Display einfach \textit{abgeschaltet}. Das heißt, es wird vollständig schwarz. Um das zu verhindern, sind folgende Schritte notwendig:
+
+Ab und zu wird das Display einfach abgeschaltet. Das heißt, es wird vollständig
+schwarz. Um das zu verhindern, sind folgende Schritte notwendig:
 
 \begin{figure}[H]
 \begin{lstlisting}
@@ -361,12 +418,15 @@ xset s off
 #xset 0 0 120
 # Editor mit CTRL+X verlassen
 \end{lstlisting}
-\caption{Bildschirmschoner}\label{fig:Bildschirmschoner}
+\capla{Bildschirmschoner}
 \end{figure}
 
 \subsubsection{Zugriff von Windows}
-Bei \vol{} ist von Haus aus bereits ein Samba installiert. Damit kann man problemlos auf den Speicher zugreifen. Allerdings bietet das Gerät verschiedene
-Speicherorte an. Das könnte zu Verwirrungen sorgen. Deswegen sorgen wir dafür, dass lediglich auf Speicher, der über USB angeschlossen wird, zugegriffen werden
+
+Bei \vol{} ist von Haus aus bereits ein Samba installiert. Damit kann man
+problemlos auf den Speicher zugreifen. Allerdings bietet das Gerät verschiedene
+Speicherorte an. Das könnte zu Verwirrungen sorgen. Deswegen sorgen wir dafür,
+dass lediglich auf Speicher, der über USB angeschlossen wird, zugegriffen werden
 kann. Somit können wir von Windows aus ohne Rätselraten auf die SSD zugreifen.
 
 \begin{figure}[H]
@@ -413,26 +473,30 @@ sudo nano /etc/samba/smb.conf
 
 # Editor mit CTRL+X verlassen
 \end{lstlisting}
-\caption{Share}\label{fig:Share}
+\capla{Volumio Share}
 \end{figure}
 
-Unter Windows ist das Gerät dann unter dem Namen \code{\textbackslash{}\textbackslash{}boombox} im Windows Explorer erreichbar.
+Unter Windows ist das Gerät dann unter dem Namen
+\code{\textbackslash{}\textbackslash{}boombox} im Windows Explorer erreichbar.
 
 \jpaimg{./../images/win-bb.png}{Zugriff von Windows}
 
-Zum Abschluss schalten wir den \textit{SSH} Zufriff wieder ab. Dazu rufen wir die entsprechende Seite auf. Siehe hierzu auch Kapitel \nameref{subsubsec:SSH}.
+Zum Abschluss schalten wir den \textit{SSH} Zufriff wieder ab. Dazu rufen wir
+die entsprechende Seite auf. Siehe hierzu auch Kapitel \nameref{subsubsec:SSH}.
+
+\section{\mixxx{}}
+
+Als ich begonnen habe, mich mit \mixxx{} und dem \rpi{} auseinander zu setzen,
+musste man die Software noch selbst auf dem \rpi{} compilieren. Als ich mich
+etwas später erneut damit auseinandergesetzt habe, habe ich diese
+\href{https://github.com/dennisdebel/pi_dj}{Installationsanleitung} gefunden.
+Es gibt mittlerweile ein Paket, welches direkt installiert werden kann.
 
 \clearpage{}
 \phantomsection{}
 \addcontentsline{toc}{section}{Abbildungsverzeichnis}
 \listoffigures\thispagestyle{fancy}
 \newpage
-
-% \clearpage{}
-% \phantomsection{}
-% \addcontentsline{toc}{section}{Tabellenverzeichnis}
-% \listoftables\thispagestyle{fancy}
-% \newpage
 
 \renewcommand{\indexname}{Stichwortverzeichnis}
 \clearpage{}
